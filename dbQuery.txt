@@ -1,0 +1,100 @@
+db.History.insert(
+[
+  {
+    "downloadHistory": {
+      "ILST": {
+        "firstDownloadTS": "2019-12-03T14:33:08.000Z",
+        "hasDownloaded": true,
+        "latestDownloadTS": "2021-05-25 19:22:14",
+        "downloadCount": 3
+      },
+      "CCXP": {
+        "firstDownloadTS": "2020-03-19T20:03:37.513Z",
+        "hasDownloaded": true,
+        "latestDownloadTS": "2020-03-19T20:03:37.513Z",
+        "downloadCount": 1
+      },
+      "IDSN": {
+        "firstDownloadTS": "2016-03-19T20:03:37.513Z",
+        "hasDownloaded": true,
+        "latestDownloadTS": "2020-03-19T20:03:37.513Z",
+        "downloadCount": 2
+      }
+    },
+    "uf": "59ac9d02-73d4-4319-9449-f43d21890e3c",
+    "_id": "BBB",
+    "productsUsage": {
+      "hist": {
+        "appLaunch": {
+          "PHSP": {
+            "2021-05-27": 1,
+            "2021-04-19": 1
+          }
+        }
+      },
+      "appLaunch": {
+        "PHSP": {
+          "firstLaunchTS": "2019-12-09T09:27:48.000Z",
+          "latestLaunchTS": "2021-05-27T12:53:58.000",
+          "launchCount": 125
+        },
+        "ACRO": {
+          "firstLaunchTS": "2019-12-06T12:00:54.000Z",
+          "latestLaunchTS": "2020-03-06T12:00:54.000Z",
+          "launchCount": 9
+        }
+      },
+      "stockActivity": {
+        "STOCK": {
+          "hasDownloadedWatermarkedImg": true
+        }
+      }
+    }
+  },
+  {
+    "downloadHistory": {
+      "ILST": {
+        "firstDownloadTS": "2019-12-03T14:33:08.000Z",
+        "hasDownloaded": true,
+        "latestDownloadTS": "2021-05-25 19:22:14",
+        "downloadCount": 3
+      },
+      "CCXP": {
+        "firstDownloadTS": "2017-03-19T20:03:37.513Z",
+        "hasDownloaded": true,
+        "latestDownloadTS": "2020-03-19T20:03:37.513Z",
+        "downloadCount": 1
+      }
+    },
+    "uf": "59ac9d02-73d4-4319-9449-f43d21890e3c",
+    "_id": "AAA",
+    "productsUsage": {
+      "hist": {
+        "appLaunch": {
+          "PHSP": {
+            "2021-05-27": 1,
+            "2021-04-19": 1
+          }
+        }
+      },
+      "appLaunch": {
+        "PHSP": {
+          "firstLaunchTS": "2018-12-09T09:27:48.000Z",
+          "latestLaunchTS": "2021-05-27T12:53:58.000",
+          "launchCount": 125
+        },
+        "ACRO": {
+          "firstLaunchTS": "2019-12-06T12:00:54.000Z",
+          "latestLaunchTS": "2020-03-06T12:00:54.000Z",
+          "launchCount": 9
+        }
+      },
+      "stockActivity": {
+        "STOCK": {
+          "hasDownloadedWatermarkedImg": true
+        }
+      }
+    }
+  }
+]
+)
