@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const dot = require('dot-object');
 
 function aggregateHistory(db) {
   db.collection("History").find({}).toArray((err, histories) => {
@@ -50,7 +51,7 @@ function getAggregatedHistory (histories) {
     Object.keys(history.downloadHistory).forEach((downloadHistoryKey) => {
       // determine firstDownloadTS
       const firstDownloadTS = history.downloadHistory[downloadHistoryKey].firstDownloadTS;
-      const existingFirstDownloadTS = _.get(existHistory, `downloadHistory.${downloadHistoryKey}.firstDownloadTS`, null);
+      const existingFirstDownloadTS = dot.pick(`downloadHistory.${downloadHistoryKey}.firstDownloadTS`, existHistory);
       if(
         firstDownloadTS &&
         existingFirstDownloadTS &&
@@ -60,7 +61,7 @@ function getAggregatedHistory (histories) {
       }
       // determine hasDownloaded
       const hasDownloaded = history.downloadHistory[downloadHistoryKey].hasDownloaded;
-      const existingHasDownloaded = _.get(existHistory, `downloadHistory.${downloadHistoryKey}.hasDownloaded`, undefined);
+      const existingHasDownloaded = dot.pick(`downloadHistory.${downloadHistoryKey}.hasDownloaded`, existHistory);
       if(
         !_.isUndefined(hasDownloaded) &&
         !_.isUndefined(existingHasDownloaded)
@@ -79,7 +80,7 @@ function getAggregatedHistory (histories) {
       }
       // determine downloadCount
       const downloadCount = history.downloadHistory[downloadHistoryKey].downloadCount;
-      const existingDownloadCount = _.get(existHistory, `downloadHistory.${downloadHistoryKey}.downloadCount`, null);
+      const existingDownloadCount = dot.pick(`downloadHistory.${downloadHistoryKey}.downloadCount`, existHistory);
       if(
         downloadCount &&
         existingDownloadCount &&
@@ -90,8 +91,8 @@ function getAggregatedHistory (histories) {
 
     });
 
-    const appLaunch = _.get(history, 'productsUsage.hist.appLaunch', null);
-    const existAppLaunch = _.get(existHistory, 'productsUsage.hist.appLaunch', {});
+    const appLaunch = dot.pick('productsUsage.hist.appLaunch', history);
+    const existAppLaunch = dot.pick('productsUsage.hist.appLaunch', existHistory)? dot.pick('productsUsage.hist.appLaunch', existHistory): {};
     if(!appLaunch) {
       return acc;
     }
@@ -104,7 +105,7 @@ function getAggregatedHistory (histories) {
 
       Object.keys(appLaunch[appLaunchKey]).forEach((innerAppLaunchKey) => {
         const innerAppLaunchValue = appLaunch[appLaunchKey][innerAppLaunchKey];
-        const existingInnerAppLaunchValue = existAppLaunch? _.get(existAppLaunch, `${appLaunchKey}.${innerAppLaunchKey}`, null): null;
+        const existingInnerAppLaunchValue = existAppLaunch? dot.pick(`${appLaunchKey}.${innerAppLaunchKey}`, existAppLaunch): null;
         if(
           !existingInnerAppLaunchValue &&
           innerAppLaunchValue
@@ -129,8 +130,8 @@ function getAggregatedHistory (histories) {
     });
 
     //.
-    const usageAppLaunch = _.get(history, 'productsUsage.appLaunch', null);
-    const existUsageAppLaunch = _.get(existHistory, 'productsUsage.appLaunch', {});
+    const usageAppLaunch = dot.pick('productsUsage.appLaunch', history);
+    const existUsageAppLaunch = dot.pick('productsUsage.appLaunch', existHistory)? dot.pick('productsUsage.appLaunch', existHistory): {};
     if(!usageAppLaunch) {
       return acc;
     }
@@ -143,7 +144,7 @@ function getAggregatedHistory (histories) {
 
       // determine firstLaunchTS
       const firstLaunchTS = usageAppLaunch[appLaunchKey].firstLaunchTS;
-      const existingFirstLaunchTS = _.get(existUsageAppLaunch, `${appLaunchKey}.firstLaunchTS`, null);
+      const existingFirstLaunchTS = dot.pick(`${appLaunchKey}.firstLaunchTS`, existUsageAppLaunch);
       if(
         firstLaunchTS &&
         existingFirstLaunchTS &&
@@ -153,7 +154,7 @@ function getAggregatedHistory (histories) {
       }
       // determine launchCount
       const launchCount =  usageAppLaunch[appLaunchKey].launchCount;
-      const existingLaunchCount = _.get(existUsageAppLaunch, `${appLaunchKey}.launchCount`, null);
+      const existingLaunchCount = dot.pick(`${appLaunchKey}.launchCount`, existUsageAppLaunch);
       if(
         !_.isUndefined(launchCount) &&
         !_.isUndefined(existingLaunchCount)
@@ -162,7 +163,7 @@ function getAggregatedHistory (histories) {
       }
       // determine latestLaunchTS
       const latestLaunchTS = usageAppLaunch[appLaunchKey].latestLaunchTS;
-      const existingLatestLaunchTS = _.get(existUsageAppLaunch, `${appLaunchKey}.latestLaunchTS`, null);
+      const existingLatestLaunchTS = dot.pick(`${appLaunchKey}.latestLaunchTS`, existUsageAppLaunch);
       if(
         latestLaunchTS &&
         existingLatestLaunchTS &&
